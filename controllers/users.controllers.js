@@ -36,6 +36,7 @@ const createUser = async (req, res) => {
 const updateUSer = async (req, res) => {
   try {
     const { id } = req.params;
+    const { name, email } = req.body;
   } catch (error) {
     console.log(error);
   }

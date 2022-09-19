@@ -1,9 +1,16 @@
 const { app } = require('./app');
 const { db } = require('./utils/database.util');
+const { initModels } = require('./models/init.models');
 
 const startServer = async () => {
   try {
+    // Database aunthenticated
     await db.authenticate();
+
+    // Models Relations
+    initModels();
+
+    // Database Synced
     await db.sync();
 
     // Lsiten to server

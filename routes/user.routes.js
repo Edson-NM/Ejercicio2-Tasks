@@ -8,11 +8,17 @@ const {
   deleteUSer,
 } = require('../controllers/users.controllers');
 
+// Middleware
+const { userExist } = require('../middlewares/users.middlewares');
+const {
+  createUserValidators,
+} = require('../middlewares/validators.middlewares');
+
 const usersRouter = express.Router();
 
-usersRouter.post('/', createUser);
+usersRouter.post('/', createUserValidators, createUser);
 usersRouter.get('/', getAllUsers);
-usersRouter.patch('/:id', updateUSer);
-usersRouter.delete('/:id', deleteUSer);
+usersRouter.patch('/:id', userExist, updateUSer);
+usersRouter.delete('/:id', userExist, deleteUSer);
 
-module.exports = { actorsRouter };
+module.exports = { usersRouter };
